@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartupActivity">
+
+    <TextView
+        android:id="@+id/startup_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PC Remote Control"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:textColor="@color/md_theme_primary"
+        android:layout_marginTop="120dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/startup_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert PC Remote Control server info to connect"
+        android:textSize="16sp"
+        android:textColor="@color/md_theme_onBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startup_name"
+        android:layout_marginTop="40dp"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/startup_addr_l"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/startup_port_l"
+        app:layout_constraintTop_toBottomOf="@+id/startup_instruction"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:hint="address">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/startup_addr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/startup_port_l"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/startup_addr_l"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startup_instruction"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:hint="port">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/startup_port"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:text="25881"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/startup_pass_l"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startup_addr_l"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:hint="password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/startup_pass"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLength="8"
+            android:letterSpacing="0.7"
+            android:gravity="center" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/startup_connect"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Connect"
+        android:paddingVertical="10dp"
+        android:textSize="22sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startup_pass_l"/>
+
+    <TextView
+        android:id="@+id/startup_ip_helper"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startup_connect"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

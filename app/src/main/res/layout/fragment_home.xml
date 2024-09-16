@@ -6,17 +6,648 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/baseline_arrow_downward_24"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp"
+        app:fabCustomSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+    <View
+        android:id="@+id/trackpad_view"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:background="@drawable/shape_trackpad"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:id="@+id/trackpad_left"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="30dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="@color/md_theme_surfaceVariant"
+        app:layout_constraintEnd_toStartOf="@+id/trackpad_right"
+        app:layout_constraintStart_toStartOf="@+id/trackpad_view"
+        app:layout_constraintTop_toBottomOf="@+id/trackpad_view"
+        />
+
+    <View
+        android:id="@+id/trackpad_right"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="@color/md_theme_surfaceVariant"
+        app:layout_constraintStart_toEndOf="@+id/trackpad_left"
+        app:layout_constraintEnd_toEndOf="@+id/trackpad_view"
+        app:layout_constraintTop_toBottomOf="@+id/trackpad_view"
+        />
+
+    <TextView
+        android:id="@+id/text_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/key_shift"
+        style="@style/specialButton"
+        android:layout_width="140dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="0dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="10dp"
+        android:checkable="true"
+        android:paddingVertical="0dp"
+        android:text="Shift"
+        app:layout_constraintBottom_toBottomOf="@+id/keyboard_interceptor"
+        app:layout_constraintEnd_toStartOf="@id/keyboard_interceptor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/keyboard_interceptor" />
+
+    <LinearLayout
+        android:id="@+id/lay4"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trackpad_right">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_tab"
+            android:layout_weight="1.5"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:layout_height="match_parent"
+            android:text="TAB"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_esc"
+            android:layout_weight="0.9"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:layout_height="match_parent"
+            android:text="esc"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_caps"
+            android:layout_weight="1.1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:layout_height="match_parent"
+            android:checkable="true"
+            android:focusable="false"
+            android:text="caps"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_ctx"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:enabled="false"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:layout_height="match_parent"
+            android:text="ctx"
+            />
+
+    </LinearLayout>
+
+    <io.github.theaester.pcremotecontrol.components.InterceptingEditText
+        android:id="@+id/keyboard_interceptor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:hint="Type here"
+        android:inputType="none"
+        android:paddingVertical="20dp"
+        android:paddingStart="15dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/lay4"
+        app:layout_constraintStart_toEndOf="@+id/key_shift"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/lay1"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/keyboard_interceptor">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_ctrl"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:checkable="true"
+            android:layout_height="match_parent"
+            android:text="Ctrl"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_alt"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:checkable="true"
+            android:layout_height="match_parent"
+            android:text="Alt"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_fn"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:checkable="true"
+            android:layout_height="match_parent"
+            android:text="Fn"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_super"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:layout_height="match_parent"
+            android:text="super"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay2"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="70dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay1">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:visibility="invisible"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:layout_height="match_parent"
+            android:text="ins"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_up"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:text=""
+            android:padding="27dp"
+            android:drawableEnd="@drawable/baseline_keyboard_arrow_up_24"
+            android:drawableTint="@color/md_theme_primary"
+            android:layout_height="match_parent"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            android:visibility="invisible"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:layout_height="match_parent"
+            android:text="pg up"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lay3"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay2">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_left"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:text=""
+            android:padding="27dp"
+            android:drawableEnd="@drawable/baseline_keyboard_arrow_left_24"
+            android:drawableTint="@color/md_theme_primary"
+            android:layout_height="match_parent"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_down"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:text=""
+            android:padding="27dp"
+            android:drawableEnd="@drawable/baseline_keyboard_arrow_down_24"
+            android:drawableTint="@color/md_theme_primary"
+            android:layout_height="match_parent"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_right"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:text=""
+            android:padding="27dp"
+            android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+            android:drawableTint="@color/md_theme_primary"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay5"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="70dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay3">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_ins"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:layout_height="match_parent"
+            android:text="ins"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_home"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:layout_height="match_parent"
+            android:text="home"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_pgup"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:layout_height="match_parent"
+            android:text="pg up"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lay6"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay5">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_del"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:layout_height="match_parent"
+            android:text="del"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_end"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:layout_height="match_parent"
+            android:text="end"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/key_pgdn"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="0dp"
+            style="@style/specialButton"
+            android:paddingVertical="0dp"
+            android:layout_height="match_parent"
+            android:text="pg dn"
+            />
+
+    </LinearLayout>
+
+
+    <TableLayout
+        android:id="@+id/lay7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:stretchColumns="0,1,2,3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay6">
+        <TableRow>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key_f1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="0dp"
+                style="@style/specialButton"
+                android:paddingVertical="0dp"
+                android:layout_height="match_parent"
+                android:text="F1"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key_f2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="0dp"
+                style="@style/specialButton"
+                android:paddingVertical="0dp"
+                android:layout_height="match_parent"
+                android:text="F2"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key_f3"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="0dp"
+                style="@style/specialButton"
+                android:paddingVertical="0dp"
+                android:layout_height="match_parent"
+                android:text="F3"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key_f4"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="0dp"
+                style="@style/specialButton"
+                android:paddingVertical="0dp"
+                android:layout_height="match_parent"
+                android:text="f4"
+                />
+
+        </TableRow>
+
+        <TableRow>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key_f5"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="0dp"
+                style="@style/specialButton"
+                android:paddingVertical="0dp"
+                android:layout_height="match_parent"
+                android:text="F5"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key_f6"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="0dp"
+                style="@style/specialButton"
+                android:paddingVertical="0dp"
+                android:layout_height="match_parent"
+                android:text="F6"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key_f7"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="0dp"
+                style="@style/specialButton"
+                android:paddingVertical="0dp"
+                android:layout_height="match_parent"
+                android:text="F7"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key_f8"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="0dp"
+                style="@style/specialButton"
+                android:paddingVertical="0dp"
+                android:layout_height="match_parent"
+                android:text="f8"
+                />
+
+        </TableRow>
+
+        <TableRow>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key_f9"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="0dp"
+                style="@style/specialButton"
+                android:paddingVertical="0dp"
+                android:layout_height="match_parent"
+                android:text="F9"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key_f10"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="0dp"
+                style="@style/specialButton"
+                android:paddingVertical="0dp"
+                android:layout_height="match_parent"
+                android:text="F10"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key_f11"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="0dp"
+                style="@style/specialButton"
+                android:paddingVertical="0dp"
+                android:layout_height="match_parent"
+                android:text="F11"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/key_f12"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="0dp"
+                style="@style/specialButton"
+                android:paddingVertical="0dp"
+                android:layout_height="match_parent"
+                android:text="f12"
+                />
+
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/lay8"
+        android:layout_width="50dp"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:weightSum="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay7">
+
+
+        <ImageView
+            android:id="@+id/vol_up"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_add_24"
+            app:tint="@color/md_theme_primary" />
+
+        <ImageView
+            android:id="@+id/vol_mute"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_volume_up_24"
+            app:tint="@color/md_theme_onSurfaceVariant" />
+
+        <ImageView
+            android:id="@+id/vol_dn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_remove_24"
+            app:tint="@color/md_theme_primary" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay9"
+        android:layout_width="50dp"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:weightSum="3"
+        app:layout_constraintStart_toEndOf="@+id/lay8"
+        app:layout_constraintTop_toBottomOf="@+id/lay7">
+
+
+        <ImageView
+            android:id="@+id/bt_up"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_add_24"
+            app:tint="@color/md_theme_primary" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_brightness_6_24"
+            app:tint="@color/md_theme_onSurfaceVariant" />
+
+        <ImageView
+            android:id="@+id/bt_dn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_remove_24"
+            app:tint="@color/md_theme_primary" />
+
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
