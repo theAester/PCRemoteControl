@@ -14,7 +14,7 @@ The currect app:
 
 ## How to use
 
-First make sure to check out the [server code](https://github.com/theAester/PCRemoteControl.git) and run it on your computer.
+First make sure to check out the [server code](https://github.com/theAester/PCRemoteControlServer.git) and run it on your computer.
 You will be presented with the a help message and the session Key in a pop up webpage. Insert the data into the mobile app in order to connect.
 Once youre connected you should see the controls on your phones screen.
 
